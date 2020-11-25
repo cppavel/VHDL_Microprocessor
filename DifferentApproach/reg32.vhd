@@ -12,7 +12,7 @@ use ieee.std_logic_1164.all;
         process(Clk)
             begin
                 if (rising_edge(Clk)) then
-                    if (not load)='1' then
+                    if (load)='1' then
                         Q<=D after 5 ns;
                     end if;
                 end if;

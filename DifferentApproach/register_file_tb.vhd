@@ -8,32 +8,39 @@ end register_file_tb;
 architecture behavior of register_file_tb is
 
   component register_file is
-       Port ( src: in std_logic_vector(4 downto 0);
+       Port (  srcA: in std_logic_vector(4 downto 0);
+        srcB: in std_logic_vector(4 downto 0);
         dst: in std_logic_vector(4 downto 0);
+        data: in std_logic_vector(31 downto 0);
+        enable:in std_logic;
         Clk : in std_logic;
-        data_src : in std_logic;
-        data : in std_logic_vector(31 downto 0);
-        registers: out std_logic_matrix);
+        A: out std_logic_vector(31 downto 0);
+        B: out std_logic_vector(31 downto 0));
      end component;
     
     --inputs
-    signal src: std_logic_vector(4 downto 0);
+    signal srcA: std_logic_vector(4 downto 0);
+    signal srcB: std_logic_vector(4 downto 0);
     signal dst: std_logic_vector(4 downto 0);
+    signal enable: std_logic;
     signal Clk: std_logic:='0';
-    signal data_src: std_logic;
     signal data: std_logic_vector(31 downto 0);
+
     --outputs
-    signal registers: std_logic_matrix;
+    signal A:  std_logic_vector(31 downto 0);
+    signal B:  std_logic_vector(31 downto 0);
     
 begin
 
     uut: register_file port map(
-        src=>src,
+        srcA=>srcA,
+        srcB=>srcB,
         dst=>dst,
-        Clk=>Clk,
-        data_src=>data_src,
         data=>data,
-        registers=>registers
+        enable=>enable,
+        Clk=>Clk,
+        A=>A,
+        B=>B
     );
     
     Clk <= not Clk after 10 ns;
@@ -41,14 +48,16 @@ begin
     stim_proc:process
     begin
         -- 0126EE70  (hex) = 19328624 (decimal)
-        src<="00001";
-        data_src<='0';
-        
+        -- 0126EE70  (hex) = 19328624 (decimal)
+        srcA<="00000";
+        srcB<="00011";
+        enable<='1';
         data<=X"0126EE70";
         dst<="00000";
     
         wait for 20 ns;
     
+        enable<='0';
         data<=X"0126EE6F";
         dst<="00001";
     
@@ -58,7 +67,7 @@ begin
         dst<="00010";
     
         wait for 20 ns;
-    
+        enable<='1';
         data<=X"0126EE6D";
         dst<="00011";
         
@@ -204,56 +213,20 @@ begin
                
         wait for 20 ns;
         
-        data_src<='1';
-        
-        src<="00000"; --0 transfer 1
-        dst<="01010"; --10
-       
-        wait for 20 ns;
-        
-        src<="00001"; --1 transfer 2
-        dst<="01011"; --11
-        
-        wait for 20 ns;   
-                           
-        src<="00010"; --2 transfer 3
-        dst<="01100"; --12
-        
-        wait for 20 ns;   
-                           
-        src<="00011"; --3 transfer 4
-        dst<="01101"; --13
+        srcA<="00000";
+        srcB<="11111";
         
         wait for 20 ns;
         
-        src<="00100"; --4 transfer 5
-        dst<="01110"; --14
-        
-        wait for 20 ns;   
-                           
-        src<="00101"; --5 transfer 6
-        dst<="01111"; --15
-        
-        wait for 20 ns;   
-                           
-        src<="00110"; --6 transfer 7
-        dst<="10000"; --16
+        srcA<="10010";
+        srcB<="00000";
         
         wait for 20 ns;
         
-        src<="00111"; --7 transfer 8
-        dst<="10001"; --17
-        
-        wait for 20 ns;   
-                           
-        src<="01000"; --8 transfer 9
-        dst<="10010"; --18
-        
-        wait for 20 ns;   
-                           
-        src<="01001"; --9 transfer 10
-        dst<="10011"; --19
+        srcA<="00010";
+        srcB<="00001";
         
         wait for 20 ns;
+  
     end process;
 end;
