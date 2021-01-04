@@ -83,7 +83,7 @@ begin
             
             wait for 10 ns;
             
-            IN_CAR<="00000000011111111";
+            IN_CAR<="00000000000000111";
             
             wait for 10 ns;
             

@@ -106,8 +106,15 @@ begin
       Daddress<="100000";
       DataIn<=X"11111111";
       
+      wait for 200 ns;
+      
+      write<='0';
+      Daddress<="100000";
+      DataIn<=X"11100011";
+      
       wait for 195 ns;
       
+      write<='1';
       Daddress<="000001";
       DataIn<=X"FFFFAAF9";
       
@@ -213,6 +220,13 @@ begin
       
       wait for 195 ns;
       
+      Aaddress<="100000";
+      MB<='1';
+      ConstantIn<=X"0000000F";
+      FS<="00010";
+      Daddress<="100000";
+      
+      wait for 195 ns;
       
     end process;
 
