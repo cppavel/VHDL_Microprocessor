@@ -3,9 +3,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 use work.mypackage.all;
 
 entity register_file is
-Port (  srcA: in std_logic_vector(4 downto 0);
-        srcB: in std_logic_vector(4 downto 0);
-        dst: in std_logic_vector(4 downto 0);
+Port (  srcA: in std_logic_vector(5 downto 0);
+        srcB: in std_logic_vector(5 downto 0);
+        dst: in std_logic_vector(5 downto 0);
         data: in std_logic_vector(31 downto 0);
         enable:in std_logic;
         Clk : in std_logic;
@@ -22,8 +22,8 @@ architecture Behavioral of register_file is
     end component;
     
     component decoder_5_32 is
-    Port(A:in std_logic_vector(4 downto 0);
-            D_not:out std_logic_vector(31 downto 0));
+    Port(A:in std_logic_vector(5 downto 0);
+            D_not:out std_logic_vector(32 downto 0));
     end component;  
     
     component mux_2_32 is
@@ -35,12 +35,12 @@ architecture Behavioral of register_file is
     
     component mux_32_32 is
     Port(A:in std_logic_matrix;
-            S:in std_logic_vector(4 downto 0);
+            S:in std_logic_vector(5 downto 0);
             Z:out std_logic_vector(31 downto 0));
     end component; 
     
-    signal load_registers: std_logic_vector(31 downto 0);
-    signal load: std_logic_vector(31 downto 0);
+    signal load_registers: std_logic_vector(32 downto 0);
+    signal load: std_logic_vector(32 downto 0);
     signal register_q_s: std_logic_matrix;
     
     begin
@@ -77,6 +77,7 @@ architecture Behavioral of register_file is
     load_registers(29) <= enable and load(29) after 5 ns;
     load_registers(30) <= enable and load(30) after 5 ns;
     load_registers(31) <= enable and load(31) after 5 ns;
+    load_registers(32) <= enable and load(32) after 5 ns;
     
     reg00: reg32 port map(
         D => data,
@@ -281,6 +282,12 @@ architecture Behavioral of register_file is
         load => load_registers(31),
         Clk => Clk,
         Q => register_q_s(31));
+        
+    temp_reg: reg32 port map(
+        D => data,
+        load => load_registers(32),
+        Clk => Clk,
+        Q => register_q_s(32));
         
     des_decoder_5to32: decoder_5_32 
         port map(A=>dst,

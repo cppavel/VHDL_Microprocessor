@@ -33,11 +33,11 @@ use work.mypackage.all;
 --use UNISIM.VComponents.all;
 
 entity datapath is
-    Port(write: in std_logic; Aaddress: in std_logic_vector(4 downto 0);
-        Baddress: in std_logic_vector(4 downto 0); Daddress: in std_logic_vector(4 downto 0);
+    Port(write: in std_logic; Aaddress: in std_logic_vector(5 downto 0);
+        Baddress: in std_logic_vector(5 downto 0); Daddress: in std_logic_vector(5 downto 0);
             ConstantIn: in std_logic_vector(31 downto 0); MB: in std_logic;
                 FS: in std_logic_vector(4 downto 0); MD: in std_logic; DataIn: in
-                    std_logic_vector(31 downto 0); AddressOut: out std_logic_vector(31 downto 0);
+                    std_logic_vector(31 downto 0); Clk:in std_logic; AddressOut: out std_logic_vector(31 downto 0);
                         DataOut: out std_logic_vector(31 downto 0); V: out std_logic; C: out std_logic;
                             N: out std_logic; Z: out std_logic);
         
@@ -45,9 +45,9 @@ end datapath;
 
 architecture Behavioral of datapath is
     component register_file is
-    Port (srcA: in std_logic_vector(4 downto 0);
-        srcB: in std_logic_vector(4 downto 0);
-        dst: in std_logic_vector(4 downto 0);
+    Port (srcA: in std_logic_vector(5 downto 0);
+        srcB: in std_logic_vector(5 downto 0);
+        dst: in std_logic_vector(5 downto 0);
         data: in std_logic_vector(31 downto 0);
         enable:in std_logic;
         Clk : in std_logic;
@@ -70,13 +70,11 @@ architecture Behavioral of datapath is
     
     signal data: std_logic_vector(31 downto 0);
     signal functional_result: std_logic_vector(31 downto 0);
-    signal Clk: std_logic := '1';
     signal A: std_logic_vector(31 downto 0);
     signal B: std_logic_vector(31 downto 0);
     signal Breg: std_logic_vector(31 downto 0);
 begin
-    
-     Clk <= not Clk after 97.5 ns; -- worst-case propagation is 190 ns so we set period to 195 ns, could do 190 as it is the minimal possible period
+      
      AddressOut<=A;
      DataOut<=B;
      

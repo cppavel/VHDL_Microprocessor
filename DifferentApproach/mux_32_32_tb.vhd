@@ -9,13 +9,13 @@ architecture behavior of mux_32_32_tb is
 
     component mux_32_32
     Port(A:in std_logic_matrix;
-            S:in std_logic_vector(4 downto 0);
+            S:in std_logic_vector(5 downto 0);
             Z:out std_logic_vector(31 downto 0));
     end component;
     
     --inputs
     signal A: std_logic_matrix;
-    signal S: std_logic_vector(4 downto 0);
+    signal S: std_logic_vector(5 downto 0);
     --outputs
     signal Z: std_logic_vector(31 downto 0);
     
@@ -62,133 +62,139 @@ begin
         A(29)<=X"F000000D";
         A(30)<=X"F000000E";
         A(31)<=X"F000000F";
+        A(32)<=X"F000001F";
         
         
-        S<="00000";
+        S<="000000";
     
         wait for 10 ns;
     
-        S<="00001";
+        S<="000001";
     
         wait for 10 ns;
     
-        S<="00010";
+        S<="000010";
     
         wait for 10 ns;
     
-        S<="00011";
+        S<="000011";
         
         wait for 10 ns;
         
-        S<="00100";
+        S<="000100";
         
         wait for 10 ns;
         
-        S<="00101";
+        S<="000101";
         
         wait for 10 ns;
         
-        S<="00110";
+        S<="000110";
         
         wait for 10 ns;
                    
-        S<="00111";
+        S<="000111";
         
         wait for 10 ns;
         
-        S<="01000";
+        S<="001000";
         
         wait for 10 ns;
         
-        S<="01001";
+        S<="001001";
         
         wait for 10 ns;
         
-        S<="01010";    
+        S<="001010";    
                         
         wait for 10 ns;
         
-        S<="01011"; 
+        S<="001011"; 
                       
         wait for 10 ns;
         
-        S<="01100";  
+        S<="001100";  
         
         wait for 10 ns;
         
-        S<="01101";   
+        S<="001101";   
         
         wait for 10 ns;
         
-        S<="01110";
+        S<="001110";
                         
         wait for 10 ns;
         
-        S<="01111";
+        S<="001111";
                         
         wait for 10 ns;
         
-        S<="10000";
+        S<="010000";
     
         wait for 10 ns;
     
-        S<="10001";
+        S<="010001";
     
         wait for 10 ns;
     
-        S<="10010";
+        S<="010010";
     
         wait for 10 ns;
     
-        S<="10011";
+        S<="010011";
         
         wait for 10 ns;
         
-        S<="10100";
+        S<="010100";
         
         wait for 10 ns;
         
-        S<="10101";
+        S<="010101";
         
         wait for 10 ns;
         
-        S<="10110";
+        S<="010110";
         
         wait for 10 ns;
                    
-        S<="10111";
+        S<="010111";
         
         wait for 10 ns;
         
-        S<="11000";
+        S<="011000";
         
         wait for 10 ns;
         
-        S<="11001";
+        S<="011001";
         
         wait for 10 ns;
         
-        S<="11010";    
+        S<="011010";    
                         
         wait for 10 ns;
         
-        S<="11011";    
+        S<="011011";    
                         
         wait for 10 ns;
         
-        S<="11100";  
+        S<="011100";  
         
         wait for 10 ns;
         
-        S<="11101";   
+        S<="011101";   
         
         wait for 10 ns;
         
-        S<="11110";
+        S<="011110";
                         
         wait for 10 ns;
         
-        S<="11111";
+        S<="011111";
+                        
+        wait for 10 ns;
+        
+        
+        S<="100000";
                         
         wait for 10 ns;
     end process;

@@ -32,7 +32,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity full_adder_tb is
---  Port ( );
 end full_adder_tb;
 
 architecture Behavioral of full_adder_tb is
