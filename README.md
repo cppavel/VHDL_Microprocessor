@@ -8,7 +8,7 @@ See [control_memory.vhd](https://github.com/cppavel/VHDL_Microprocessor/blob/mai
 
 Two versions implemented: slow one (utilizing ripple adder) and a faster one (utilizing carry-lookahead adder)
 
-A simple program was written in machine code (0/1 bits) in memory
+A simple program was written in machine code (0/1 bits) in memory. See [memory.vhd](https://github.com/cppavel/VHDL_Microprocessor/blob/main/sources/memory.vhd)
 
 The schematic of the processor:
 
