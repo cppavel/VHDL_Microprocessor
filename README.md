@@ -3,7 +3,8 @@ A microprocessor I designed for Computer Architecture module
 
 Von Neumann Architecture. Implements a fetch,decode,execute pipelining
 
-Instructions implemented: ADI (add immediate), LD (load), SR (multiple shift right), INC (increment), NOT, ADD, B (unconditional jump), BZ[reg] (branch if register is equal to 0)
+Instructions implemented: ADI (add immediate), LD (load), SR (multiple shift right), INC (increment), NOT, ADD, B (unconditional jump), BZ[reg] (branch if register is equal to 0).
+See [control_memory.vhd](https://github.com/cppavel/VHDL_Microprocessor/blob/main/sources/control_memory.vhd)
 
 Two versions implemented: slow one (utilizing ripple adder) and a faster one (utilizing carry-lookahead adder)
 
