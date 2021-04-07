@@ -1,11 +1,13 @@
 # VHDL_Microprocessor
 A microprocessor I designed for Computer Architecture module
 
-Von Neumann Architecture. Implements a fetch,decode,execute pipelining. 
+Von Neumann Architecture. Implements a fetch,decode,execute pipelining
 
 Instructions implemented: ADI (add immediate), LD (load), SR (multiple shift right), INC (increment), NOT, ADD, B (unconditional jump), BZ[reg] (branch if register is equal to 0)
 
 Two versions implemented: slow one (utilizing ripple adder) and a faster one (utilizing carry-lookahead adder)
+
+A simple program was written in machine code (0/1 bits) in memory
 
 The schematic of the processor:
 
